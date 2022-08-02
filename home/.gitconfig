@@ -1,0 +1,56 @@
+[user]
+  name = David Hohengaßner
+  email = david.hohengassner@redbull.com
+[color]
+  ui = true
+[alias]
+  in = log ..@{upstream}
+  out = log @{upstream}..
+  st = status
+  co = checkout
+  ci = commit
+  br = branch
+  r = reset
+  rh = reset --hard
+  rh1 = reset --hard HEAD~1
+  rh2 = reset --hard HEAD~2
+  stage = add -p
+  ls = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  ll = log --pretty=format:'%Cred%h%C(yellow)%d%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%cn>%Creset' --decorate --numstat
+  dlc = diff --cached HEAD^
+  filelog = log -u
+  fl = log -u
+  serve = daemon --reuseaddr --base-path=. --export-all --verbose
+[core]
+  editor = code --wait
+  excludesfile = /home/dh/.gitignore_global
+[rebase]
+  # to use --fixup
+  autosquash = true
+[merge]
+    tool = sourcetree
+[diff]
+    tool = sourcetree
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
+[mergetool "sourcetree"]
+  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+[commit]
+  template = /home/dh/.stCommitMsg
+[help]
+  autocorrect = 1
+[branch]
+	autosetupmerge = always
+[credential]
+	helper = store
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

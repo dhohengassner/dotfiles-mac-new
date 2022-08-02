@@ -1,0 +1,18 @@
+# oh my zsh + plugins
+robbyrussell/oh-my-zsh
+robbyrussell/oh-my-zsh path:plugins/aws
+robbyrussell/oh-my-zsh path:plugins/kubectl
+
+popstas/zsh-command-time
+
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting
+
+docker/cli path:contrib/completion/zsh/_docker
+
+djui/alias-tips
+
+rupa/z
+
+andsens/homeshick
+andsens/homeshick path:completions kind:fpath
