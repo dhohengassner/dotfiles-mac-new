@@ -19,14 +19,14 @@ export NVM_DIR="$HOME/.nvm"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # lazy load any custom functions
-# lazyload_fpath=$HOME/.zsh/autoload
-# fpath=($lazyload_fpath $fpath)
-# if [[ -d "$lazyload_fpath" ]]; then
-#     for func in $lazyload_fpath/*; do
-#         autoload -Uz ${func:t}
-#     done
-# fi
-# unset lazyload_fpath
+lazyload_fpath=$HOME/.zsh/autoload
+fpath=($lazyload_fpath $fpath)
+if [[ -d "$lazyload_fpath" ]]; then
+    for func in $lazyload_fpath/*; do
+        autoload -Uz ${func:t}
+    done
+fi
+unset lazyload_fpath
 
 ## plugin environment vars
 
@@ -106,8 +106,7 @@ source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 # show startup time
 # zprof
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

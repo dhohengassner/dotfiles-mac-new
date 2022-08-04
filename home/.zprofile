@@ -20,3 +20,4 @@ export GOPATH=$HOME/go
 export GOPRIVATE=appsgit.bethel.jw.org
 export SDKMAN_DIR="$HOME/.sdkman"
 export PATH="$GOPATH/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/opt/openjdk/bin:/opt/homebrew/bin:/opt/homebrew/sbin/usr/local/bin:/Users/dhohengassner/Library/Python/3.8/bin"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
