@@ -59,6 +59,9 @@ alias tfp='terraform plan'
 alias tfa='terraform apply'
 alias tfa!='terraform apply -auto-approve'
 
+# awsp
+alias awsp="source _awsp"
+
 # ssh-agent
 alias ssha='ssh-add'
 alias sshl='ssh-add -l'
@@ -95,7 +98,7 @@ mkdir -p ~/.vault-tools
 
 cat > ~/.vault-tools/xdg-open <<EOF
 #!/bin/sh
-\${BROWSER:-firefox} \$1
+/Applications/Opera.app/Contents/MacOS/Opera \$1
 EOF
 chmod +x ~/.vault-tools/xdg-open
 
