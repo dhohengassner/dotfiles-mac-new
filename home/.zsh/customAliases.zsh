@@ -85,6 +85,9 @@ alias bubu='bubo && bubc'
 # Antibody
 alias antiup='antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh'
 
+# Red Bull Lifter
+alias rl='lifter'
+
 # Ruby
 alias be='bundle exec'
 
