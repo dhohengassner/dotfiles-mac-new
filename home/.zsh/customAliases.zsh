@@ -96,13 +96,17 @@ alias re='/bin/zsh --login'
 alias h='history'
 
 # overwrite vault oidc login
-
 mkdir -p ~/.vault-tools
 
-cat > ~/.vault-tools/xdg-open <<EOF
+cat > ~/.vault-tools/open <<EOF
 #!/bin/sh
-/Applications/Opera.app/Contents/MacOS/Opera \$1
+echo vault-tools
+/usr/bin/open -a opera \$1
 EOF
-chmod +x ~/.vault-tools/xdg-open
+chmod +x ~/.vault-tools/open
 
-alias vault-login-oidc="PATH=~/.vault-tools:$PATH vault login -method=oidc"
+vault_login_oidc() {
+  PATH=~/.vault-tools:$PATH vault login -method=oidc $1
+}
+
+alias vault-login-oidc="vault_login_oidc"
