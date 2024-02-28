@@ -87,6 +87,7 @@ alias antiup='antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh'
 
 # Red Bull Lifter
 alias rl='lifter'
+alias rls='lifter sso --admin-only --trays cc'
 
 # Ruby
 alias be='bundle exec'
@@ -104,7 +105,7 @@ mkdir -p ~/.vault-tools
 cat > ~/.vault-tools/open <<EOF
 #!/bin/sh
 echo vault-tools
-/usr/bin/open -a opera \$1
+/usr/bin/open -a safari \$1
 EOF
 chmod +x ~/.vault-tools/open
 
