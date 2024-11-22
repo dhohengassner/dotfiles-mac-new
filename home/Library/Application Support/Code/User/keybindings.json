@@ -59,5 +59,13 @@
     {
         "key": "alt+cmd+t",
         "command": "workbench.action.terminal.new"
+    },
+    {
+        "key": "ctrl+[Quote]",
+        "command": "github.copilot.nextPanelSolution"
+    },
+    {
+        "key": "ctrl+[Semicolon]",
+        "command": "github.copilot.previousPanelSolution"
     }
 ]

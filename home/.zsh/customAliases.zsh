@@ -22,6 +22,9 @@ alias gtr='go test -v ./...'
 alias gomv='go mod verify'
 alias gomt='go mod tidy'
 
+# AWS
+alias awsp='export AWS_PROFILE=$(sed -n "s/\[profile \(.*\)\]/\1/gp" ~/.aws/config | fzf)'
+
 # Docker aliases
 alias db='docker build .'
 alias dcr='docker create'
@@ -44,11 +47,11 @@ alias dpsa='docker ps -a'
 alias dip!='docker image prune -a'
 alias dsp!='docker system prune -a'
 
-alias dcup='docker-compose up'
-alias dcupd='docker-compose up -d'
-alias dcstop='docker-compose stop'
-alias dcdown='docker-compose down'
-alias dckill='docker-compose kill'
+alias dcup='docker compose up'
+alias dcupd='docker compose up -d'
+alias dcstop='docker compose stop'
+alias dcdown='docker compose down'
+alias dckill='docker compose kill'
 
 alias dlogecr='eval $(aws ecr get-login --no-include-email)'
 
@@ -58,9 +61,6 @@ alias tfi='terraform init'
 alias tfp='terraform plan'
 alias tfa='terraform apply'
 alias tfa!='terraform apply -auto-approve'
-
-# awsp
-alias awsp="source _awsp"
 
 # ssh-agent
 alias ssha='ssh-add'
