@@ -94,3 +94,18 @@ fi
 
 # Show startup time
 # zprof[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# VS Code Shell Integration for Copilot
+# Fix for terminal completion detection issue
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+    # Disable RPROMPT in VS Code (causes detection issues)
+    unset RPROMPT
+    unset RPS1
+    
+    # Simplify PROMPT for better compatibility
+    PROMPT='%F{032}%~%f %F{105}»%f '
+    
+    # Load VS Code shell integration
+    [[ -f "$(code --locate-shell-integration-path zsh)" ]] && \
+        . "$(code --locate-shell-integration-path zsh)"
+fi
