@@ -1,0 +1,47 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__aws__search_documentation",
+      "mcp__aws__read_sections",
+      "mcp__aws__read_documentation",
+      "mcp__aws-api__suggest_aws_commands",
+      "mcp__aws-api__call_aws",
+      "mcp__kubernetes__pods_list",
+      "mcp__kubernetes__resources_list",
+      "mcp__kubernetes__pods_log",
+      "mcp__kubernetes__resources_get",
+      "mcp__kubernetes__pods_get",
+      "mcp__kubernetes__pods_list_in_namespace",
+      "mcp__kubernetes__nodes_stats_summary",
+      "mcp__kubernetes__events_list",
+      "mcp__kubernetes__nodes_log",
+      "mcp__gravity__get_component",
+      "mcp__gravity__get_guide",
+      "mcp__power-datadog-datadog__search_datadog_monitors",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_console_messages",
+      "mcp__playwright__browser_network_requests",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_tabs",
+      "mcp__playwright__browser_run_code",
+      "mcp__playwright__browser_click",
+      "Bash(python3 -c ' *)",
+      "Bash(pip install *)",
+      "Bash(python3 *)",
+      "Bash(xxd)",
+      "Skill(deep-research)",
+      "Read(//Users/dhohengassner/.claude/plugins/data/datadog-claude-plugins-official/**)"
+    ],
+    "defaultMode": "auto"
+  },
+  "enabledPlugins": {
+    "datadog@claude-plugins-official": true
+  },
+  "effortLevel": "high",
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark",
+  "editorMode": "normal",
+  "skipAutoPermissionPrompt": true
+}

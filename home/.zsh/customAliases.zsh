@@ -1,5 +1,8 @@
 #! /usr/local/bin/zsh
 
+# claude
+alias claude-bethel="CLAUDE_CONFIG_DIR=~/.claude-bethel claude"
+
 # tmux aliases
 alias t='tmux attach || tmux new -s main'
 alias tn='tmux new -s'
