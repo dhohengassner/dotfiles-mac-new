@@ -4,10 +4,11 @@ description: >-
   Use this skill whenever the user wants to write, draft, or fix a git commit
   message - including requests like "commit this", "write a commit message",
   "what should I commit", or staging changes that need a message. Produces
-  messages that ALWAYS start with a gitmoji and otherwise follow the
-  Conventional Commits v1.0.0 specification. Do NOT use for changelog
-  generation, release notes, or PR descriptions unless they explicitly reuse
-  this commit format.
+  messages that ALWAYS start with a gitmoji followed directly by a plain
+  imperative description - no Conventional Commits type/scope prefix in the
+  header - while body and footer conventions still borrow from Conventional
+  Commits v1.0.0. Do NOT use for changelog generation, release notes, or PR
+  descriptions unless they explicitly reuse this commit format.
 ---
 
 # Commit
@@ -48,13 +49,15 @@ repo's top level - find it with `git rev-parse --show-toplevel` and join
 
 Write every commit message in this exact shape.
 
-The gitmoji is mandatory and always comes first.  
-Everything after it follows Conventional Commits v1.0.0.
+The gitmoji is mandatory and always comes first, directly followed by a  
+plain imperative description - no `type(scope):` prefix, no colon.  
+The gitmoji alone carries what the type used to signal. Body and footer  
+conventions still borrow from Conventional Commits v1.0.0.
 
 ## Format
 
 ```
-<gitmoji> <type>[optional scope][optional !]: <description>
+<gitmoji> <description>
 
 [optional body]
 
@@ -66,7 +69,7 @@ spaces - invisible above, shown as `·` here: `…feature flag.·· / The flag�
 The blank line before the second paragraph marks a different idea:
 
 ```
-✨ feat(auth): add OAuth2 login flow
+✨ add OAuth2 login flow
 
 Add Google and GitHub providers behind a feature flag.  
 The flag defaults to off so existing sessions are untouched.
@@ -85,27 +88,23 @@ These are non-negotiable. Read them before writing anything.
   Use the unicode emoji (✨), not the shortcode (`:sparkles:`),  
   unless the user's tooling needs shortcodes - then ask or match their history.
 
-2. **One space** between the gitmoji and the type.
+2. **One space** separates the gitmoji from the description - nothing else  
+  goes between them.
 
-3. **Type is required** and is a lowercase noun: `feat`, `fix`, `docs`, etc.  
-  See the table below for the canonical set.
+3. **No type or scope prefix, and no colon.** Decide a type internally  
+  (`feat`, `fix`, `docs`, etc.) purely to pick the right gitmoji from the  
+  table below - that word, and any `(scope)`, never appear in the printed  
+  message. If the affected area matters, weave it into the description  
+  itself (`add entra pkce client for the ccdocs mcp`) instead of a prefix.
 
-4. **Scope is optional** and goes in parentheses right after the type: `fix(parser):`.  
-  Use a short noun for the affected area (a module, package, or surface).
-
-5. **`!` marks a breaking change** and goes immediately before the colon:  
-  `feat(api)!:` - see the Breaking changes section.
-
-6. **A colon and a single space** separate the prefix from the description.
-
-7. **Description** is a short summary in the imperative mood, lowercase, no trailing period.  
+4. **Description** is a short summary in the imperative mood, lowercase, no trailing period.  
   Good: `add retry logic`.  Bad: `Added retry logic.`  
   Aim for ~50 characters, but treat it as a soft target, not a hard cap.  
   If a whole idea reads more naturally and lands within ±10 characters  
   (so up to ~60), keep it intact rather than truncating or abbreviating.  
   Don't pad a short description to hit the number either - shorter is fine.
 
-8. **Body is optional.**  
+5. **Body is optional.**  
   It starts one blank line after the description.  
   Explain *what* and *why*, not *how*.
 
@@ -134,7 +133,7 @@ These are non-negotiable. Read them before writing anything.
   whitespace. If yours does, either disable it for commit messages or  
   fall back to one unbroken line per paragraph (also renders correctly).
 
-9. **Footers are optional.**  
+6. **Footers are optional.**  
   They start one blank line after the body.  
   Each footer is `Token: value` or `Token #value`.  
   Tokens use `-` instead of spaces (e.g. `Reviewed-by`),  
@@ -142,15 +141,22 @@ These are non-negotiable. Read them before writing anything.
   Keep each footer on a single line (token and value together) for the  
   same newline reason as the body - one footer per line.
 
-10. **Never add AI attribution.**  
+7. **Breaking changes are signalled with a `BREAKING CHANGE:` footer only.**  
+  There is no type/colon prefix left to attach a `!` to, so the footer is  
+  now the one and only way to mark a breaking change - see the Breaking  
+  changes section.
+
+8. **Never add AI attribution.**  
   Do not append `Co-Authored-By: Claude`, `Co-Authored-By: Opus`,  
   "Generated with Claude Code", or any similar AI-authorship line or footer.  
   The commit is the user's. Leave attribution out entirely.
 
 ## Type → gitmoji quick reference
 
-Pick the type first, then the gitmoji that best fits the *intent* of the change.  
-Several gitmoji can map to one type - choose the most specific.
+This table is internal scaffolding only - the type word is never printed in  
+the message. Pick the type first, then the gitmoji that best fits the  
+*intent* of the change. Several gitmoji can map to one type - choose the  
+most specific.
 
 | Type       | Meaning                                   | Common gitmoji            |
 |------------|-------------------------------------------|---------------------------|
@@ -171,18 +177,12 @@ rather than inventing a new type.
 
 ## Breaking changes
 
-A breaking change MUST be signalled in one of two ways (you can use both).
-
-**In the prefix** - add `!` before the colon:
-
-```
-💥 feat(api)!: drop support for v1 endpoints
-```
-
-**In the footer** - add a `BREAKING CHANGE:` entry (uppercase, with a colon):
+A breaking change MUST be signalled with a `BREAKING CHANGE:` footer entry  
+(uppercase, with a colon) - there is no type/colon prefix left to attach a  
+`!` to, so the footer is the only mechanism:
 
 ```
-💥 feat(api): migrate to v2 schema
+💥 migrate to v2 schema
 
 BREAKING CHANGE: the `/users` payload now nests under `data`. Clients reading the top-level array will break.
 ```
@@ -195,14 +195,15 @@ The words must stay uppercase - everything else in the message is case-insensiti
 A minimal fix:
 
 ```
-🐛 fix: prevent crash on empty config
+🐛 prevent crash on empty config
 ```
 
-A scoped feature with a body (note the trailing spaces on *every* line,  
-including the last):
+A feature with a body (note the trailing spaces on *every* line, including  
+the last; the area affected - "cart" - is woven into the description  
+instead of a `(scope)` prefix):
 
 ```
-✨ feat(cart): support saving items for later
+✨ support saving cart items for later
 
 Persist the saved list per user so it survives logout.  
 Storage falls back to localStorage when the API is unreachable.  
@@ -213,7 +214,7 @@ sentence too long for ~82 cols hard-breaks at a natural point instead of
 running as one giant line. The blank line marks the second idea (the fix):
 
 ```
-🐛 fix(peering): derive NACL rule numbers from pair hash
+🐛 derive NACL rule numbers from pair hash
 
 Rule numbers were computed from each tray's alphabetical position  
 in the full trays.yaml list.  
@@ -233,19 +234,22 @@ Task: https://redbull-gms.atlassian.net/browse/MITCESQ-2558
 A docs typo:
 
 ```
-✏️ docs: correct install command in README
+✏️ correct install command in README
 ```
 
 A dependency bump:
 
 ```
-⬆️ build(deps): upgrade vite to 5.4.2
+⬆️ upgrade vite to 5.4.2
 ```
 
-A revert:
+A revert - since there's no `revert:` type prefix anymore, name what's  
+being reverted and why in the body instead:
 
 ```
-⏪️ revert: feat(cart): support saving items for later
+⏪️ support saving cart items for later
+
+Reverts a1b2c3d, which broke logout for guest sessions.  
 
 Refs: #771
 ```
@@ -297,23 +301,28 @@ Refs: #771
   **Other references footer(s).** Turn each link/note from Question 2 into its  
   own footer (e.g. `See: <url>`, `Doc: <url>`, or `Ref: <url> - <note>`), one  
   per line, placed above the `Task:` line.  
-3. Decide the single most accurate `type`.  
+3. Decide the single most accurate `type` internally - this is scaffolding  
+  only, to pick the gitmoji in the next step. It will not appear in the  
+  message.  
 4. Pick the gitmoji that matches the intent, not just the type.  
-5. Add a scope only if it sharpens the message.  
-6. Write an imperative, lowercase description. Aim for ~50 characters but keep  
-  a whole idea intact if it lands within ±10 (up to ~60); don't pad or truncate.  
-7. Add a body only when the *why* isn't obvious from the description.  
+5. Write an imperative, lowercase description with no type/scope prefix and  
+  no colon. Aim for ~50 characters but keep a whole idea intact if it lands  
+  within ±10 (up to ~60); don't pad or truncate. If the affected area  
+  matters, name it in the description text itself rather than a `(scope)`  
+  prefix.  
+6. Add a body only when the *why* isn't obvious from the description.  
   Start every sentence on its own line, ending each line with two trailing  
   spaces (always - including a paragraph's last line). Wrap at ~72 cols;  
   overrun by at most ~10 (ceiling ~82), then hard-break long sentences  
   rather than letting them run as one giant line. Put a blank line between  
   sentences only when they cover a different idea, change, or explanation -  
   that starts a new paragraph.  
-8. Add footers for the references gathered in step 2, plus reviewers or  
-  breaking changes.  
-9. If the change really does two unrelated things, suggest splitting it  
+7. Add footers for the references gathered in step 2, plus reviewers or a  
+  `BREAKING CHANGE:` entry - the footer is the only way to mark a breaking  
+  change now (see Breaking changes above).  
+8. If the change really does two unrelated things, suggest splitting it  
   into two commits rather than cramming both into one message.  
-10. Never add a co-author, "Generated with" line, or any AI attribution.  
-11. Write the message to `commit_msg.md` at the repo root (see "Where the  
+9. Never add a co-author, "Generated with" line, or any AI attribution.  
+10. Write the message to `commit_msg.md` at the repo root (see "Where the  
   message goes" above), show it inline too, and stop there - do not run  
   `git commit`, stage files, or create/switch branches (see Scope above).
