@@ -16,9 +16,9 @@ description: >-
 
 This skill drafts a commit message. That is the entire job.
 
-- **Never run `git commit`.** Produce the message as text (in a fenced code  
-  block) for the user to use themselves - even if they say "commit this."  
-  "Commit this" means "write the message for this," not "run the command."
+- **Never run `git commit`.** Write the message to a file for the user to use  
+  themselves - even if they say "commit this." "Commit this" means "write the  
+  message for this," not "run the command."
 - **Never create, switch, or check out a branch.** No `git branch`,  
   `git checkout -b`, `git switch -c`, or similar.
 - **Never stage files** (`git add`) as part of this skill. Reading the diff  
@@ -27,6 +27,24 @@ This skill drafts a commit message. That is the entire job.
 - If the user explicitly asks you to *also* commit or branch, that is a  
   separate request outside this skill - handle it after, and only with the  
   same confirmation you'd want before any git action that changes repo state.
+
+## Where the message goes - always `commit_msg.md` at the repo root
+
+Always write the final message with the Write tool to `commit_msg.md` at the  
+repo's top level - find it with `git rev-parse --show-toplevel` and join  
+`commit_msg.md` to that path. This is the only destination.
+
+- **Never** write it to `/tmp`, the session scratchpad directory, `.claude/`,  
+  or any other path - even though the scratchpad is where you'd normally put  
+  throwaway output, this file is the deliverable and belongs in the repo.
+- If `commit_msg.md` already exists at the repo root, overwrite it - it's  
+  meant to hold the *current* message, not a history of past ones.
+- After writing, tell the user the file was written (state the path) and show  
+  the message inline too, so they don't have to open the file to see it.
+- This file is a working artifact, not something to `git add` - leave it  
+  untracked/unstaged. If the repo has a `.gitignore`, you may mention that the  
+  user might want to add `commit_msg.md` to it, but don't edit `.gitignore`  
+  yourself unless asked.
 
 Write every commit message in this exact shape.
 
@@ -296,5 +314,6 @@ Refs: #771
 9. If the change really does two unrelated things, suggest splitting it  
   into two commits rather than cramming both into one message.  
 10. Never add a co-author, "Generated with" line, or any AI attribution.  
-11. Hand back the message in a fenced code block and stop there - do not run  
+11. Write the message to `commit_msg.md` at the repo root (see "Where the  
+  message goes" above), show it inline too, and stop there - do not run  
   `git commit`, stage files, or create/switch branches (see Scope above).
