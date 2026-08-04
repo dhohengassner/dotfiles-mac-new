@@ -86,7 +86,7 @@ alias bubc='brew upgrade && brew cleanup'
 alias bubu='bubo && bubc'
 
 # Antibody
-alias antiup='antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh'
+alias antiup='antidote bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.zsh'
 
 # Red Bull Lifter
 alias rl='lifter'

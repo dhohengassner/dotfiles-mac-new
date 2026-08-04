@@ -70,10 +70,12 @@ for ZFILE in $HOME/.zsh/*; do
     source $ZFILE
 done
 
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+
 ## Source plugins last
 # Static method, after updates run:
-# antibody bundle <~/.zsh_plugins.txt > ~/.zsh_plugins.sh
-source ~/.zsh_plugins.sh
+# antidote bundle <~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+source ~/.zsh_plugins.zsh
 
 # Homeshick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
