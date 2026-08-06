@@ -19,6 +19,6 @@ export LESSCHARSET=utf-8
 export GOPATH=$HOME/go
 export GOPRIVATE=appsgit.bethel.jw.org
 export SDKMAN_DIR="$HOME/.sdkman"
-export PATH="$GOPATH/bin:/usr/local/go/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin:/opt/homebrew/sbin/usr/local/bin:/opt/homebrew/opt:/Users/dhohengassner/.local/bin"
+export PATH="$GOPATH/bin:/usr/local/go/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/dhohengassner/.local/bin"
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 export AWS_REGION='eu-west-1'

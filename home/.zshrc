@@ -74,7 +74,7 @@ source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
 
 ## Source plugins last
 # Static method, after updates run:
-# antidote bundle <~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+# antidote bundle <~/.zsh_plugins.txt > ~/.zsh_plugins.zsh
 source ~/.zsh_plugins.zsh
 
 # Homeshick

@@ -1,5 +1,4 @@
-# oh my zsh + plugins
-robbyrussell/oh-my-zsh
+# oh-my-zsh itself is sourced directly in .zshrc - only pull specific plugins here
 robbyrussell/oh-my-zsh path:plugins/aws
 robbyrussell/oh-my-zsh path:plugins/kubectl
 
@@ -14,5 +13,5 @@ djui/alias-tips
 
 rupa/z
 
-andsens/homeshick
+# homeshick itself is sourced directly in .zshrc - only pull completions here
 andsens/homeshick path:completions kind:fpath
