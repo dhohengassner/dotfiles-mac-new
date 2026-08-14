@@ -39,6 +39,10 @@
   "enabledPlugins": {
     "datadog@claude-plugins-official": true
   },
+  "statusLine": {
+    "type": "command",
+    "command": "python3 ~/.claude/statusline.sh"
+  },
   "effortLevel": "high",
   "skipWorkflowUsageWarning": true,
   "theme": "dark",
