@@ -36,12 +36,21 @@
     ],
     "defaultMode": "auto"
   },
-  "enabledPlugins": {
-    "datadog@claude-plugins-official": true
-  },
   "statusLine": {
     "type": "command",
     "command": "python3 ~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "datadog@claude-plugins-official": true,
+    "cesq-skills@cesq-claude-plugins": true
+  },
+  "extraKnownMarketplaces": {
+    "cesq-claude-plugins": {
+      "source": {
+        "source": "git",
+        "url": "git@gitlab.com:redbullmediahouse/platform-automation/cesq-claude-plugins.git"
+      }
+    }
   },
   "effortLevel": "high",
   "skipWorkflowUsageWarning": true,

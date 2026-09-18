@@ -111,3 +111,6 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
     [[ -f "$(code --locate-shell-integration-path zsh)" ]] && \
         . "$(code --locate-shell-integration-path zsh)"
 fi
+
+# Added by MTPLX.app - terminal command
+export PATH="$HOME/.mtplx/bin:$PATH"
