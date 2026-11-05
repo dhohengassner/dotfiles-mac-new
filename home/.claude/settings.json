@@ -36,13 +36,13 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "python3 ~/.claude/statusline.sh"
   },
   "enabledPlugins": {
-    "datadog@claude-plugins-official": true,
-    "cesq-skills@cesq-claude-plugins": true
+    "datadog@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "cesq-claude-plugins": {
