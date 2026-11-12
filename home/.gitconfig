@@ -23,7 +23,7 @@
   serve = daemon --reuseaddr --base-path=. --export-all --verbose
 [core]
   editor = code --wait
-  excludesfile = /home/dh/.gitignore_global
+  excludesfile = ~/.gitignore_global
 [rebase]
   # to use --fixup
   autosquash = true

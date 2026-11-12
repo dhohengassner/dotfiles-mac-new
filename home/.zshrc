@@ -5,7 +5,8 @@
 export EDITOR=code
 export KUBE_EDITOR='code --wait'
 
-export KUBECONFIG="$KUBECONFIG:/Users/dhohengassner/.kube/config:/Users/dhohengassner/.kube/lifter.kubeconfig"
+# Set (not append) so nested shells / tmux panes do not stack duplicates or inherit one-off overrides
+export KUBECONFIG="$HOME/.kube/config:$HOME/.kube/lifter.kubeconfig"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
